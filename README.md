@@ -1,59 +1,263 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SkillHub Certification - Course Management System
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
 </p>
 
-## About Laravel
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-12.0-red" alt="Laravel Version">
+  <img src="https://img.shields.io/badge/PHP-8.2-blue" alt="PHP Version">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 About Project
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**SkillHub Certification** is a course and participant management system built using Laravel 12. This project was created to **fulfill certification requirements** and demonstrate proficiency in:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   Web application development using Laravel framework
+-   Implementation of MVC (Model-View-Controller) pattern
+-   Database management with Eloquent ORM
+-   Application testing with PestPHP
+-   CRUD operations implementation
+-   Model relationships (Many-to-Many)
 
-## Learning Laravel
+### Main Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+✨ **Participant Management**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   Create, Read, Update, Delete participants
+-   Complete information: name, email, phone, address
 
-## Laravel Sponsors
+✨ **Course Management**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   Create, Read, Update, Delete courses
+-   Course details: name, instructor, description, duration
 
-### Premium Partners
+✨ **Enrollment Management**
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+-   Enroll participants to courses
+-   Many-to-Many relationship between participants and courses
+-   View enrollment list with participant and course details
+-   Unenroll participants from courses
 
-## Contributing
+## 🛠 Technologies Used
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-   **Framework**: Laravel 12.0
+-   **PHP**: 8.2+
+-   **Database**: MySQL/PostgreSQL/SQLite
+-   **Testing**: PestPHP 4.1
+-   **Frontend**: Blade Templates, Vite
+-   **CSS Framework**: Bootstrap/Tailwind (optional)
 
-## Code of Conduct
+## 📦 Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Prerequisites
 
-## Security Vulnerabilities
+Make sure your system has installed:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-   PHP 8.2 or higher
+-   Composer
+-   Node.js & NPM
+-   Database (MySQL/PostgreSQL/SQLite)
 
-## License
+### Installation Steps
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Clone repository**
+
+```bash
+git clone https://github.com/LouisFernando1204/skillhub-certification.git
+cd skillhub-certification
+```
+
+2. **Install dependencies**
+
+```bash
+composer install
+npm install
+```
+
+3. **Setup environment**
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+4. **Database configuration**
+
+Edit `.env` file and adjust database configuration:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=skillhub_certification
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+5. **Run migrations**
+
+```bash
+php artisan migrate
+```
+
+6. **Build assets**
+
+```bash
+npm run build
+```
+
+7. **Run application**
+
+```bash
+php artisan serve
+```
+
+Application will run at `http://localhost:8000`
+
+## 🗄 Database Structure
+
+### Participants Table
+
+-   `id`: Primary Key
+-   `name`: Participant name
+-   `email`: Participant email (unique)
+-   `phone`: Phone number
+-   `address`: Address
+-   `created_at`, `updated_at`: Timestamps
+
+### Courses Table
+
+-   `id`: Primary Key
+-   `name`: Course name
+-   `instructor`: Instructor name
+-   `description`: Course description
+-   `duration`: Course duration
+-   `created_at`, `updated_at`: Timestamps
+
+### Course_Participants Table (Pivot Table)
+
+-   `id`: Primary Key
+-   `course_id`: Foreign Key to courses
+-   `participant_id`: Foreign Key to participants
+-   `created_at`, `updated_at`: Timestamps
+
+## 🔗 Endpoint Routes
+
+### Participants
+
+-   `GET /participants` - List all participants
+-   `GET /participants/create` - Add participant form
+-   `POST /participants` - Save new participant
+-   `GET /participants/{id}` - Participant details
+-   `GET /participants/{id}/edit` - Edit participant form
+-   `PUT /participants/{id}` - Update participant
+-   `DELETE /participants/{id}` - Delete participant
+
+### Courses
+
+-   `GET /courses` - List all courses
+-   `GET /courses/create` - Add course form
+-   `POST /courses` - Save new course
+-   `GET /courses/{id}` - Course details
+-   `GET /courses/{id}/edit` - Edit course form
+-   `PUT /courses/{id}` - Update course
+-   `DELETE /courses/{id}` - Delete course
+
+### Enrollments
+
+-   `GET /enrollments` - List all enrollments
+-   `GET /enrollments/create` - New enrollment form
+-   `POST /enrollments` - Save enrollment
+-   `DELETE /enrollments/{id}` - Delete enrollment
+
+## 🧪 Testing
+
+This project uses **PestPHP** for testing. To run tests:
+
+```bash
+# Run all tests
+php artisan test
+
+# or use pest directly
+./vendor/bin/pest
+
+# Run tests with coverage
+php artisan test --coverage
+```
+
+### Test Coverage
+
+Available tests:
+
+-   ✅ Course CRUD operations
+-   ✅ Participant CRUD operations
+-   ✅ Enrollment operations
+-   ✅ Model relationships
+-   ✅ Validation rules
+
+## 📁 Project Structure
+
+```
+app/
+├── Http/
+│   └── Controllers/
+│       ├── CourseController.php
+│       ├── ParticipantController.php
+│       └── EnrollmentController.php
+├── Models/
+│   ├── Course.php
+│   ├── Participant.php
+│   └── CourseParticipant.php
+│
+database/
+├── migrations/
+│   ├── 2025_11_22_044027_create_courses_table.php
+│   ├── 2025_11_22_044027_create_participants_table.php
+│   └── 2025_11_22_099999_create_course_participants_table.php
+│
+resources/
+├── views/
+│   ├── courses/
+│   ├── participants/
+│   ├── enrollments/
+│   └── layouts/
+│
+tests/
+├── Feature/
+│   ├── CourseTest.php
+│   ├── ParticipantTest.php
+│   └── EnrollmentTest.php
+```
+
+## 🎯 Implemented Features
+
+### 1. CRUD Operations
+
+-   ✅ Create, Read, Update, Delete for Participants
+-   ✅ Create, Read, Update, Delete for Courses
+-   ✅ Create, Read, Delete for Enrollments
+
+### 2. Database Relations
+
+-   ✅ Many-to-Many relationship between Courses and Participants
+-   ✅ Eloquent ORM for query optimization
+
+### 3. Validation
+
+-   ✅ Form validation for all inputs
+-   ✅ Email unique validation
+-   ✅ Required field validation
+
+### 4. Testing
+
+-   ✅ Unit tests for models
+-   ✅ Feature tests for controllers
+-   ✅ Test coverage for critical paths
+
+## 👨‍💻 Developer
+
+**Louis Fernando**
+
+-   GitHub: [@LouisFernando1204](https://github.com/LouisFernando1204)
