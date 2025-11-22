@@ -11,8 +11,10 @@
 |
 */
 
-pest()->extend(Tests\TestCase::class)
- // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+pest()->extend(Tests\TestCase::class, RefreshDatabase::class)
+    // ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
 
 /*
