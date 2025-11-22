@@ -23,8 +23,8 @@ class CourseController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'instructor' => 'required|string|max:255',
-            'duration' => 'nullable|integer',
-            'description' => 'nullable|string',
+            'duration' => 'required|integer',
+            'description' => 'required|string',
         ]);
 
         Course::create($request->all());
@@ -50,8 +50,8 @@ class CourseController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'instructor' => 'required|string|max:255',
-            'duration' => 'nullable|integer',
-            'description' => 'nullable|string',
+            'duration' => 'required|integer',
+            'description' => 'required|string',
         ]);
 
         $course->update($request->all());
