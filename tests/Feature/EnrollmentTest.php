@@ -14,7 +14,8 @@ test('halaman index pendaftaran bisa diakses dan menampilkan data', function () 
     $course = Course::create([
         'name' => 'Desain Grafis',
         'instructor' => 'Andi Wijaya',
-        'duration' => 30
+        'duration' => 30,
+        'description' => 'Pelajari teknik desain grafis dasar menggunakan Adobe Photoshop dan Illustrator.'
     ]);
 
     CourseParticipant::create([
@@ -33,7 +34,7 @@ test('halaman form pendaftaran bisa diakses', function () {
         ->assertSee('Catat Pendaftaran Baru');
 });
 
-test('peserta bisa mendaftar ke kelas', function () {
+test('peserta bisa mendaftar ke satu kelas', function () {
     $participant = Participant::create([
         'name' => 'Nurul Hidayah',
         'email' => 'nurul.hidayah@email.com',
@@ -43,7 +44,8 @@ test('peserta bisa mendaftar ke kelas', function () {
     $course = Course::create([
         'name' => 'Pemrograman Dasar',
         'instructor' => 'Budi Santoso',
-        'duration' => 40
+        'duration' => 40,
+        'description' => 'Belajar konsep dasar pemrograman untuk pemula, meliputi logika, algoritma, dan pengenalan bahasa pemrograman.'
     ]);
 
     $this->post(route('enrollments.store'), [
@@ -57,6 +59,44 @@ test('peserta bisa mendaftar ke kelas', function () {
     ]);
 });
 
+test('peserta bisa mendaftar ke banyak kelas', function () {
+    $participant = Participant::create([
+        'name' => 'Kiki Amalia',
+        'email' => 'kiki.amalia@email.com',
+        'phone' => '08123456789',
+        'address' => 'Jl. Merdeka No. 10, Jakarta'
+    ]);
+
+    $course1 = Course::create([
+        'name' => 'Kelas PHP',
+        'instructor' => 'Pak Budi',
+        'duration' => 10,
+        'description' => 'Belajar PHP dasar'
+    ]);
+
+    $course2 = Course::create([
+        'name' => 'Kelas JavaScript',
+        'instructor' => 'Bu Ani',
+        'duration' => 12,
+        'description' => 'Belajar JS dasar'
+    ]);
+
+    $this->post(route('enrollments.store'), [
+        'participant_id' => $participant->id,
+        'course_ids' => [$course1->id, $course2->id],
+    ])->assertRedirect(route('enrollments.index'));
+
+    $this->assertDatabaseHas('course_participant', [
+        'participant_id' => $participant->id,
+        'course_id' => $course1->id,
+    ]);
+
+    $this->assertDatabaseHas('course_participant', [
+        'participant_id' => $participant->id,
+        'course_id' => $course2->id,
+    ]);
+});
+
 test('peserta bisa membatalkan pendaftaran', function () {
     $participant = Participant::create([
         'name' => 'Oki Setiawan',
@@ -67,7 +107,8 @@ test('peserta bisa membatalkan pendaftaran', function () {
     $course = Course::create([
         'name' => 'Editing Video',
         'instructor' => 'Citra Dewi',
-        'duration' => 35
+        'duration' => 35,
+        'description' => 'Pelajari teknik editing video profesional menggunakan software populer seperti Adobe Premiere dan DaVinci Resolve.'
     ]);
 
     $enrollment = CourseParticipant::create([

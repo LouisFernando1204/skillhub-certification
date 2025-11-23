@@ -32,7 +32,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $participant->phone }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                 <a href="{{ route('participants.show', $participant->id) }}"
-                                    class="text-blue-600 hover:text-blue-900 mr-3">Lihat</a>
+                                    class="text-blue-600 hover:text-blue-900 mr-3">Detail</a>
                                 <a href="{{ route('participants.edit', $participant->id) }}"
                                     class="text-yellow-600 hover:text-yellow-900 mr-3">Edit</a>
 

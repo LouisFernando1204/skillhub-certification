@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Course;
+use App\Models\CourseParticipant;
 use App\Models\Participant;
 
 test('halaman index peserta bisa diakses dan menampilkan data', function () {
@@ -47,6 +49,32 @@ test('halaman detail peserta bisa diakses', function () {
     $this->get(route('participants.show', $participant->id))
         ->assertStatus(200)
         ->assertSee('Indra Firmansyah');
+});
+
+test('halaman detail peserta menampilkan daftar kelas yang diikuti', function () {
+    $participant = Participant::create([
+        'name' => 'Budi Santoso',
+        'email' => 'budisantoso@email.com',
+        'phone' => '081234567890',
+        'address' => 'Jl. Warung No. 10, Jakarta'
+    ]);
+
+    $course = Course::create([
+        'name' => 'Kelas Laravel',
+        'instructor' => 'Taylor Otwell',
+        'duration' => 20,
+        'description' => 'Framework PHP terbaik'
+    ]);
+
+    CourseParticipant::create([
+        'participant_id' => $participant->id,
+        'course_id' => $course->id
+    ]);
+
+    $this->get(route('participants.show', $participant->id))
+        ->assertStatus(200)
+        ->assertSee('Budi Santoso')
+        ->assertSee('Kelas Laravel');
 });
 
 test('halaman form edit peserta bisa diakses', function () {
