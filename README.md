@@ -98,9 +98,32 @@ DB_PASSWORD=
 
 5. **Run migrations**
 
+You have two options to set up the database:
+
+**Option A: Using Migrations (Recommended for Development)**
+
 ```bash
 php artisan migrate
 ```
+
+**Option B: Import SQL File (Quick Setup with Sample Data)**
+
+If you prefer to use the provided SQL dump with sample data:
+
+```bash
+# For MySQL
+mysql -u root -p skillhub_certification < skillhub_certification.sql
+
+# Or using phpMyAdmin: Import the skillhub_certification.sql file
+```
+
+The SQL file (`skillhub_certification.sql`) includes:
+
+-   ✅ Complete database structure with all tables and foreign keys
+-   ✅ Sample participants data (3 participants)
+-   ✅ Sample courses data (3 courses)
+-   ✅ Sample enrollments data (4 enrollments)
+-   ✅ Ready-to-use data for testing and demonstration
 
 6. **Build assets**
 
@@ -118,6 +141,8 @@ Application will run at `http://localhost:8000`
 
 ## 🗄 Database Structure
 
+The database structure is defined in migrations and also available as a SQL dump file (`skillhub_certification.sql`).
+
 ### Participants Table
 
 -   `id`: Primary Key
@@ -133,15 +158,37 @@ Application will run at `http://localhost:8000`
 -   `name`: Course name
 -   `instructor`: Instructor name
 -   `description`: Course description
--   `duration`: Course duration
+-   `duration`: Course duration (in hours)
 -   `created_at`, `updated_at`: Timestamps
 
-### Course_Participants Table (Pivot Table)
+### Course_Participant Table (Pivot Table)
 
 -   `id`: Primary Key
--   `course_id`: Foreign Key to courses
--   `participant_id`: Foreign Key to participants
+-   `participant_id`: Foreign Key to participants (CASCADE on delete/update)
+-   `course_id`: Foreign Key to courses (CASCADE on delete/update)
 -   `created_at`, `updated_at`: Timestamps
+
+### Sample Data
+
+The provided SQL file includes sample data:
+
+**Participants:**
+
+-   Budi Santoso (budi.santoso@gmail.com)
+-   Siti Aminah (siti.aminah@yahoo.com)
+-   Reza Rahadian (reza.r@outlook.com)
+
+**Courses:**
+
+-   Pemrograman Web Dasar (20 hours) - Instructor: Eko Kurniawan
+-   Desain Grafis Kreatif (15 hours) - Instructor: Dodi Mulyadi
+-   Digital Marketing Mastery (25 hours) - Instructor: Andri Wongso
+
+**Enrollments:**
+
+-   Budi Santoso enrolled in: Pemrograman Web Dasar, Digital Marketing Mastery
+-   Siti Aminah enrolled in: Desain Grafis Kreatif
+-   Reza Rahadian enrolled in: Pemrograman Web Dasar
 
 ## 🔗 Endpoint Routes
 
